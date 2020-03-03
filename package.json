@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/antsoriaandroid/WarehouseStockage/issues"
   },
-  "homepage": "https://github.com/antsoriaandroid/WarehouseStockage#readme"
+  "homepage": "https://github.com/antsoriaandroid/WarehouseStockage#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
