@@ -1,0 +1,24 @@
+{
+  "name": "warehousestockage",
+  "version": "1.0.0",
+  "description": "Proyecto de aplicación web para gestionar el stock de un almacén de productos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antsoriaandroid/WarehouseStockage.git"
+  },
+  "keywords": [
+    "angular",
+    "node",
+    "express"
+  ],
+  "author": "Antonio Soria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antsoriaandroid/WarehouseStockage/issues"
+  },
+  "homepage": "https://github.com/antsoriaandroid/WarehouseStockage#readme"
+}
