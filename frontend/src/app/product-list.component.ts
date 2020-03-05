@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Product, ProductService } from './product.service';
+import { ProductService } from './product.service';
+import { Product } from './product.model';
+
 
 @Component({
   template: `
@@ -21,13 +23,18 @@ import { Product, ProductService } from './product.service';
       </tr>
     </table>
     <h3>Listado de productos en almacén</h3>
-  <button (click)="addItem();">Nuevo Producto</button>
+  <button class="btn btn-primary" routerLink="/product">Nuevo Producto</button>
   `
 })
 export class ProductListComponent {
   products: Product[];
 
-  constructor(service: ProductService) {
+  ngOnInit() {
+    console.log("Cargando lista de productos");
+		this.service.getProducts();
+	}
+
+  constructor(private service: ProductService) {
     this.products = service.getProducts();
   }
 }

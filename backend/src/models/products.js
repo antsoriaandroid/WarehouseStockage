@@ -23,7 +23,7 @@ exports.create = function (producto) {
     return Promise.resolve(id);
 };
 
-exports.update = function (id, contacto) {
+exports.update = function (id, producto) {
     return new Promise(function (resolve, reject) {
         var index = listaProductos.findIndex(p => p.id == id);
         if (index != -1) {
@@ -38,9 +38,9 @@ exports.update = function (id, contacto) {
 
 exports.delete = function (id) {
     return new Promise(function (resolve, reject) {
-        var index = contactos.findIndex(c => c.id == id);
+        var index = listaProductos.findIndex(p =>p.id == id);
         if (index != -1) {
-            contactos.splice(index, 1);
+            listaProductos.splice(index, 1);
             resolve();
         } else {
             reject();

@@ -16,7 +16,6 @@ exports.getProduct = function (req, res) {
 };
 
 exports.addProduct = function (req, res) {
-    console.log("Adding product");
     var producto = req.body;
     products.create(producto)
         .then(function (id) {
@@ -44,6 +43,7 @@ exports.updateProduct = function(req, res){
 
 exports.deleteProduct = function (req, res) {
     var id = req.params.id;
+     console.log("Borrar producto: "+id);
     products.delete(id)
         .then(function () {
             res.sendStatus(200);

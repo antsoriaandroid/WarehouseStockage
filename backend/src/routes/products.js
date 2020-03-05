@@ -1,17 +1,20 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 var controller = require('../controllers/products.js');
 
-var products = require('../models/products.js');
+var Productos = require('../models/products.js');
 
-router.param("id", function(req, res, next, id){
-    products.getById(id).
-        then(producto=>{
-                            req.producto = producto;
-                            next();
-                        }
-        ).catch(()=>res.status(404).send("Not Found"));
+// autoload
+router.param("id", function (req, res, next, id){
+    Productos.getById(id)
+        .then(function (producto) {
+            req.producto = producto;
+            next();
+        })
+        .catch(function () {
+            res.status(404).send("Not Found");
+        });
 });
 
 router.get('/', controller.getProductList);
