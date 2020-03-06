@@ -17,10 +17,23 @@ exports.getById = function (id) {
 };
 
 exports.create = function (producto) {
+    console.log("Crear producto")
     var id = ++lastId;
     producto.id = id;
     listaProductos.push(producto);
+    debugList();
     return Promise.resolve(id);
+};
+
+function debugList(){
+    for (var i in listaProductos) 
+    {
+    console.log("row " + i);
+    for (var j in listaProductos[i]) 
+        {
+        console.log(" " + listaProductos[i][j]);
+        }
+    }
 };
 
 exports.update = function (id, producto) {

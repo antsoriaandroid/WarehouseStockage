@@ -1,39 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Product } from './product.model';
 
 const BASE_URL = 'http://localhost:8080/productos/';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json' })
+};
 
 @Injectable()
 export class ProductService {
 
   constructor(private http: HttpClient){}
 
+
+
   getProducts(){
     console.log("Servicio: recuperar productos");
-    let products =[];
-     this.http.get<Product[]>(BASE_URL).subscribe(
-        (data: Product[]) => {products = data;}
-        , (error: HttpErrorResponse) => this.handleError(error)
-     );
-     console.log("Servicio: productos recuperados:"+products);
-     return products;
+    //let products =[];
+    // this.http.get<Product[]>(BASE_URL).subscribe(
+    //    (data: Product[]) => {products = data;}
+    //    , (error: HttpErrorResponse) => this.handleError(error)
+    // );
+    // console.log("Servicio: productos recuperados:"+products);
+    // return products;
+
+     return this.http.get<Product[]>(BASE_URL);
   }
 
   getProduct(id: number){
-    let product;
-    this.http.get<Product>(BASE_URL + id).subscribe(
-      (data: Product) => (product = data),
-      error => this.handleError(error)
-    );
-
-    return product;
+    console.log("Servicio: recuperar producto con ID "+id);
+    return this.http.get<Product>(BASE_URL + id);
   }
 
   addProduct(product: Product){
     if(product){		
-			this.http.post(BASE_URL, product).subscribe(
+			this.http.post<Product>(BASE_URL, product,httpOptions).subscribe(
 				data => this.getProducts(),
 				error => this.handleError(error)
 			);
@@ -48,7 +52,7 @@ export class ProductService {
 		);
   }
 
-  updateProducto(product: Product) {
+  updateProduct(product: Product) {
     this.http.put<Product>(BASE_URL + product.id, product).subscribe(
 			data => this.getProducts(),
 			error => this.handleError(error)

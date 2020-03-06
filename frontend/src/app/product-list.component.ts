@@ -22,19 +22,31 @@ import { Product } from './product.model';
         <td>{{product.amount}}</td>
       </tr>
     </table>
-    <h3>Listado de productos en almacén</h3>
-  <button class="btn btn-primary" routerLink="/product">Nuevo Producto</button>
-  `
+    <div>
+    <span>Listado de productos en almacén</span>
+    </div>
+    <div>
+    <button class="btn btn-primary" routerLink="/product">Nuevo Producto</button>
+    </div>
+    `
 })
 export class ProductListComponent {
   products: Product[];
 
   ngOnInit() {
-    console.log("Cargando lista de productos");
-		this.service.getProducts();
+		this.getProductList();
 	}
 
   constructor(private service: ProductService) {
-    this.products = service.getProducts();
+    this.getProductList();
   }
+
+  private getProductList() {
+		this.service.getProducts().subscribe(
+			data => {
+				this.products = data;				
+			},
+			error => console.log(error)
+		);
+	}
 }
